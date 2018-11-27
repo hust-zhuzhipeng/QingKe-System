@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:cache="http://www.springframework.org/schema/cache"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.springframework.org/schema/tx
+    http://www.springframework.org/schema/tx/spring-tx.xsd
+    http://www.springframework.org/schema/cache 
+    http://www.springframework.org/schema/cache/spring-cache-3.1.xsd">
+    <!-- 1.配置阿里云相关参数properties的属性：${url} -->
+    <context:property-placeholder location="classpath:aliyun.properties" ignore-unresolvable="true"/>
+    <!-- 组件扫描 -->
+    <context:component-scan base-package="oss" />
+    <!-- OSS客户端配置 -->
+    <bean id="clientConfiguration" class="com.aliyun.oss.ClientConfiguration">
+          <property name="maxConnections" value="${MaxConnections}"/>
+          <property name="socketTimeout" value="${SocketTimeout}"/>
+          <property name="connectionTimeout" value="${ConnectionTimeout}"/>
+          <property name="idleConnectionTime" value="${IdleConnectionTime}"/>
+          <property name="maxErrorRetry" value="${MaxErrorRetry}"/>
+    </bean>
+    <!-- oss客户端  目前是原型模式  需要再斟酌-->
+    <bean id="${oss_client}" scope="prototype" factory-bean="ossClientFactory" factory-method="getOSSClient"/>
+    
+    <!-- 一个定时器,用来进行一些简单定时任务 -->
+    <bean id="timer" class="java.util.Timer"/>
+	<!-- PoemShow的命名策略 -->
+    <bean id="poemShowPersistentPolicy" class="oss.persistent.HzPersistentPolicy2">
+    	<constructor-arg name="bucketName" value="zuimeixiandaishi"/> 
+    	<constructor-arg name="fileName" value="PoemShowNum"/> 		
+    </bean>
+</beans>

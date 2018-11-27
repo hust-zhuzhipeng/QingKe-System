@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd
+   http://www.springframework.org/schema/tx
+    http://www.springframework.org/schema/tx/spring-tx.xsd">
+    <!-- 自定义realm -->
+    <bean id="myRealm" class="top.zuimeixiandaishi.realm.MyRealm"/>
+    <!-- 安全管理器 -->
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+    	<property name="realm" ref="myRealm"/>
+    </bean>
+    <!-- shrio过滤器 -->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+    	<!-- Shiro的核心安全接口,这个属性是必须的 -->
+    	<property name="securityManager" ref="securityManager"/>
+    	<!-- 要求登录时的链接(可根据项目的URL进行替换),非必须的属性,默认会自动寻找Web工程根目录下的"/login.jsp"页面 -->
+    	<property name="loginUrl" value="/login.jsp"/>
+    	<!-- 登录成功后要跳转的连接(本例中此属性用不到,因为登录成功后的处理逻辑在LoginController里硬编码为main.jsp了) -->  
+    	<property name="successUrl" value="/success.jsp"/> 
+    	<!-- 用户访问未对其授权的资源时,所显示的连接 -->  
+    	<!-- 若想更明显的测试此属性可以修改它的值,如unauthor.jsp,然后用[玄玉]登录后访问/admin/listUser.jsp就看见浏览器会显示unauthor.jsp -->  
+    	<!-- 权限认证失败，则跳转到指定页面 -->
+    	<property name="unauthorizedUrl" value="/login.jsp"/>
+    	<!-- Shiro连接约束配置,即过滤链的定义 自上而下，从左到右 -->
+    	<property name="filterChainDefinitions">
+    		<value>
+    			/static/** = anon
+    			/login = anon 
+    			/guest = anon
+    			/api/guest/**=anon 
+    			/logout=logout
+    			<!-- anon 任何人都可以访问 -->
+    			<!-- 表示用户必需已通过认证,并拥有admin角色才可以正常发起'/admin'请求 -->
+    			<!-- authc 必须登录之后才能访问 不包括remember me，每次序重新认证 -->
+    			<!-- user表示用户不一定已通过认证,只要曾被Shiro记住过登录状态的用户就可以正常发起请求,比如rememberMe -->
+    			/api/admin/**=authc,roles[admin]
+    			
+    			<!-- perms[]需要权限 -->
+    			<!-- /teacher=perms["user:create"]  -->
+    			/** = anon
+    		</value>
+    	</property>
+    </bean>
+    <!-- 保证实现了Shiro内部lifecycle函数的bean执行 -->
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+    <!-- 开启Shiro注解 -->
+    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor"/>
+    <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+    	<property name="securityManager" ref="securityManager"/>
+    </bean>
+    
+</beans>
