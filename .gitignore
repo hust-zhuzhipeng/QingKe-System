@@ -1,19 +1,19 @@
-#¹ıÂËÎÄ¼ş¼Ğtarget,.idea
+ï»¿#è¿‡æ»¤æ–‡ä»¶å¤¹target,.idea
 /target
 /.idea
 /out
 *.iml
 /.settings
 
-#±àÒëÎÄ¼ş
+#ç¼–è¯‘æ–‡ä»¶
 *.class
 
-#°üÎÄ¼ş
+#åŒ…æ–‡ä»¶
 *.jar
 *.war
 *.zip
 *.rar
 *.tar.gz
 
-#¹Ø¼üÅäÖÃÎÄ¼ş
+#å…³é”®é…ç½®æ–‡ä»¶
 *aliyun.properties
