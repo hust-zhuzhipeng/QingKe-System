@@ -3,7 +3,7 @@
 /.idea
 /out
 *.iml
-.settings/
+/.settings
 
 #±àÒëÎÄ¼ş
 *.class
