@@ -14,3 +14,6 @@
 *.zip
 *.rar
 *.tar.gz
+
+#¹Ø¼üÅäÖÃÎÄ¼ş
+*aliyun.properties
