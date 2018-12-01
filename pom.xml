@@ -40,6 +40,17 @@
     		<artifactId>shiro-spring</artifactId>
     		<version>${shiro.version}</version>
     	</dependency>
+    	<dependency> 
+    		<groupId>org.apache.shiro</groupId>
+    		<artifactId>shiro-quartz</artifactId> 
+    		<version>${shiro.version}</version>
+		</dependency>	
+    	<dependency> 
+    		<groupId>commons-collections</groupId> 
+    		<artifactId>commons-collections</artifactId>
+     		<version>3.2.2</version> 
+		</dependency>
+
    	<!-- spring -->
 	   	<dependency>
 	        <groupId>org.springframework</groupId>

@@ -4,6 +4,7 @@ import java.util.Date;
 /**
  * 展示层数据
  * @author 99759
+ * 对于OSS存储方式，因其局限性，直接使用其命名规则作为存储时的文件名，同时作为orderId
  */
 public class PoemShow {
 	public Long id;	//唯一id

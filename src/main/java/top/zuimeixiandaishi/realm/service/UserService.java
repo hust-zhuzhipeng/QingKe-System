@@ -2,6 +2,7 @@ package top.zuimeixiandaishi.realm.service;
 
 import java.util.Set;
 
+import top.zuimeixiandaishi.realm.domain.Role;
 import top.zuimeixiandaishi.realm.domain.User;
 
 public interface UserService {
@@ -23,4 +24,13 @@ public interface UserService {
 	 * @return
 	 */
 	public Set<String> getPermissions(String username);
+	/**
+	 * 创建新的账户
+	 */
+	public boolean createUser(User user);
+	/**
+	 * 更新的账户
+	 * 通过username找到需要更新的数据行
+	 */
+	public boolean updateUser(User user);
 }

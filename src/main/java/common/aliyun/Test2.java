@@ -39,6 +39,7 @@ public class Test2 {
 		OSSOperationObject m = (OSSOperationObject) ap.getBean("oSSOperationObject");
 		OSSTokenManager manager = (OSSTokenManager)ap.getBean("oSSTokenManager");
 		System.out.println(m.getString("zuimeixiandaishi", "PoemShowNum"));
+		System.out.println("aaa");
 		/*Token t = manager.getReadToken(PolicyEnum.READ_POEMSHOW,"haha");
 		System.out.println(t);*/
 		/*System.out.println("------");

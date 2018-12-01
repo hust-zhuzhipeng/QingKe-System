@@ -2,6 +2,7 @@ package top.zuimeixiandaishi.realm.dao;
 
 import java.util.Set;
 
+import top.zuimeixiandaishi.realm.domain.Role;
 import top.zuimeixiandaishi.realm.domain.User;
 
 public interface UserDao {
@@ -23,4 +24,12 @@ public interface UserDao {
 	 * @return
 	 */
 	public Set<String> getPermissions(String username);
+	/**
+	 * 创建角色
+	 */
+	public int insertUser(User user);
+	/**
+	 * 修改角色
+	 */
+	public int updateUser(User user);
 }

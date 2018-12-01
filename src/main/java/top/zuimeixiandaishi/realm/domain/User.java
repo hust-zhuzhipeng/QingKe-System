@@ -4,7 +4,13 @@ public class User {
 	private Integer id;
 	private String username;
 	private String password;
-	private Integer roleId;
+	private Role roleId;
+	public Role getRoleId() {
+		return roleId;
+	}
+	public void setRoleId(Role roleId) {
+		this.roleId = roleId;
+	}
 	public Integer getId() {
 		return id;
 	}
@@ -23,12 +29,9 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public Integer getRoleId() {
-		return roleId;
+	@Override
+	public String toString(){
+		return "id="+id+"\tusername="+username+"\tpassword="+password;
 	}
-	public void setRoleId(Integer roleId) {
-		this.roleId = roleId;
-	}
-	
 	
 }
