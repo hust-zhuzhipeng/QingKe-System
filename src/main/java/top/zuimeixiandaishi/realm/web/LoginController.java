@@ -22,7 +22,9 @@ import oss.core.operate.OSSOperationObjectImpl;
 import top.zuimeixiandaishi.realm.domain.Role;
 import top.zuimeixiandaishi.realm.domain.User;
 import top.zuimeixiandaishi.realm.service.LoginService;
+import top.zuimeixiandaishi.realm.service.RegisterService;
 import top.zuimeixiandaishi.realm.service.UserService;
+import util.MailUtil;
 
 @Repository
 @Controller
@@ -32,6 +34,8 @@ public class LoginController {
 	private LoginService loginService;
 	@Autowired
 	private UserService userService;
+	@Autowired
+	RegisterService mailRegisterService;
 	/*
 	 * 登录操作
 	 * 登录成功时，会将用户user对象传入session
@@ -97,5 +101,24 @@ public class LoginController {
 	public @ResponseBody String guest() {
 		System.out.println("进入/guest");
 		return "welcom guest!";
+	}
+	
+	@RequestMapping(value = "/mailregiste", method = RequestMethod.POST)
+	public @ResponseBody String receivemail(HttpServletRequest request) {
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
+		String email = request.getParameter("email");
+		User user = new User();
+		user.setEmail(email);
+		user.setUsername(username);
+		user.setPassword(password);
+		mailRegisterService.rigister(user);
+		return "already send the register mail";
+	}
+	@RequestMapping(value = "/activemail", method = RequestMethod.GET)
+	public @ResponseBody String activemail(HttpServletRequest request) {
+		String code = request.getParameter("code");
+		mailRegisterService.active(code);
+		return "register success!";
 	}
 }

@@ -26,9 +26,8 @@
     </bean>
     <!-- oss客户端  目前是原型模式  需要再斟酌-->
     <bean id="${oss_client}" scope="prototype" factory-bean="ossClientFactory" factory-method="getOSSClient"/>
-    
     <!-- 一个定时器,用来进行一些简单定时任务 -->
-    <bean id="timer" class="java.util.Timer"/>
+    <bean id="timer" class="java.util.Timer" />
 	<!-- PoemShow的命名策略 -->
     <bean id="poemShowPersistentPolicy" class="oss.persistent.HzPersistentPolicy2">
     	<constructor-arg name="bucketName" value="zuimeixiandaishi"/> 

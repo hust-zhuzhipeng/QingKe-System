@@ -26,7 +26,6 @@ public class ExceptionHandle {
 	 */
     @ExceptionHandler(value = Exception.class)  //申明捕获那个异常类
     public ResponseEntity<Result<?>> handle(Exception e) {
-    	System.out.println("进来类");
     	if (e instanceof TokenNotFoundException) {
     		TokenNotFoundException tokenException = (TokenNotFoundException) e;
     		return new ResponseEntity<>(ResultUtil.error(tokenException.getCode(), tokenException.getMessage()),HttpStatus.NOT_FOUND);

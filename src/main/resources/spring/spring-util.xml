@@ -9,7 +9,10 @@
     http://www.springframework.org/schema/context/spring-context.xsd
     http://www.springframework.org/schema/tx
     http://www.springframework.org/schema/tx/spring-tx.xsd">
+    <!-- 邮件配置文件 -->
+    <context:property-placeholder location="classpath:mail.properties" ignore-unresolvable="true"/>
     <!-- 扫描service包下所有使用注解的类型 -->
-    <context:component-scan base-package="top.zuimeixiandaishi.service" />
-	<context:component-scan base-package="top.zuimeixiandaishi.realm.service" />
+	<context:component-scan base-package="util" />
+	<!-- 一个定时器,用来进行一些简单定时任务 -->
+    <bean id="executor" class="java.util.concurrent.Executors" factory-method="newSingleThreadExecutor"/>
 </beans>

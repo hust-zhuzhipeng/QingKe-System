@@ -35,7 +35,13 @@ import util.JsonOperate;
 public class Test2 {
 	public static void main(String[]args) throws Exception{
 		String b = "zuimeixiandaishi";
-		ApplicationContext ap = new ClassPathXmlApplicationContext(new String[]{"classpath:/spring/spring-ehcache.xml","classpath:/spring/spring-aliyun.xml"});
+		ApplicationContext ap = 
+				new ClassPathXmlApplicationContext(
+						new String[]{"classpath:/spring/spring-ehcache.xml"
+								,"classpath:/spring/spring-aliyun.xml"
+								,"classpath:/spring/spring-dao.xml"
+								,"classpath:/spring/spring-service.xml"
+								,"classpath:/spring/spring-util.xml"});
 		OSSOperationObject m = (OSSOperationObject) ap.getBean("oSSOperationObject");
 		OSSTokenManager manager = (OSSTokenManager)ap.getBean("oSSTokenManager");
 		System.out.println(m.getString("zuimeixiandaishi", "PoemShowNum"));
