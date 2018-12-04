@@ -16,6 +16,7 @@
    	<!-- 作为默认的枚举 typeHandler，EnumTypeHandler将使用枚举实例名称来和对应的枚举类之间做转换。 -->
    	<typeHandlers>
     	<typeHandler handler="org.apache.ibatis.type.EnumOrdinalTypeHandler" javaType="top.zuimeixiandaishi.realm.domain.Role"/>
+		<typeHandler handler="org.apache.ibatis.type.EnumOrdinalTypeHandler" javaType="top.zuimeixiandaishi.realm.domain.State"/>
 	</typeHandlers>
     <plugins>
         <!-- com.github.pagehelper为PageHelper类所在包名 -->

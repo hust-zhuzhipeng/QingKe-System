@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import top.zuimeixiandaishi.realm.dao.UserDao;
-import top.zuimeixiandaishi.realm.domain.Role;
 import top.zuimeixiandaishi.realm.domain.User;
 @Service("userService")
 public class UserServiceImpl implements UserService{

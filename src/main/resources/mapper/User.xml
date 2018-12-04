@@ -7,6 +7,9 @@
     <result column="username" property="username" jdbcType="VARCHAR" />
     <result column="password" property="password" jdbcType="VARCHAR" />
     <result column="roleId" property="roleId" typeHandler="org.apache.ibatis.type.EnumOrdinalTypeHandler" />
+ 	<result column="phone" property="phone" jdbcType="VARCHAR" />
+ 	<result column="email" property="email" jdbcType="VARCHAR" />
+ 	<result column="state" property="state" typeHandler="org.apache.ibatis.type.EnumOrdinalTypeHandler" />
   </resultMap>
   
   <select id="getByUserName" resultMap="BaseResultMap" parameterType="java.lang.String" >
@@ -17,7 +20,7 @@
   <select id="getRoles" resultType="java.lang.String" parameterType="java.lang.String" >
     SELECT rolename 
     FROM t_role WHERE id In(
-    	SELECT role_id 
+    	SELECT roleId 
     	FROM t_user 
     	WHERE username = #{username,jdbcType=VARCHAR}
     )
@@ -25,7 +28,7 @@
   <select id="getPermissions" resultType="java.lang.String" parameterType="java.lang.String" >
     SELECT permission_name 
     FROM t_permission WHERE role_id IN(
-    	SELECT role_id 
+    	SELECT roleId 
     	FROM t_user 
     	WHERE username = #{username,jdbcType=VARCHAR}
     )
@@ -40,7 +43,16 @@
     		password,
     	</if>
     	<if test="roleId != null">
-    		role_id,
+    		roleId,
+    	</if>
+    	<if test="phone != null">
+    		phone,
+    	</if>
+    	<if test="email != null">
+    		email,
+    	</if>
+    	<if test="state != null">
+    		state,
     	</if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -53,6 +65,15 @@
     	<if test="roleId != null">
     		#{roleId,jdbcType=NUMERIC},
     	</if>
+    	<if test="phone != null">
+    		#{phone,jdbcType=VARCHAR},
+    	</if>
+    	<if test="email != null">
+    		#{email,jdbcType=VARCHAR},
+    	</if>
+    	<if test="stae != null">
+    		#{state,jdbcType=NUMERIC},
+    	</if>
     </trim>
   </insert>
   <update id="updateUser" parameterType="top.zuimeixiandaishi.realm.domain.User">
@@ -62,7 +83,15 @@
     		password = #{password,jdbcType=VARCHAR},
     	</if>
     	<if test="roleId != null">
-    		role_id = #{roleId,jdbcType=NUMERIC},
+    		roleId = #{roleId,jdbcType=NUMERIC},
+    	</if>
+    	<if test="phone != null">
+    		phone = #{phone,jdbcType=VARCHAR},
+    	</if><if test="email != null">
+    		email = #{email,jdbcType=VARCHAR},
+    	</if>
+    	<if test="state != null">
+    		state = #{state,jdbcType=NUMERIC},
     	</if>
   	</set>
   	where username = #{username,jdbcType=VARCHAR}

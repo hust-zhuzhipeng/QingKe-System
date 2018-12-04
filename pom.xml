@@ -137,7 +137,7 @@
             <artifactId>druid</artifactId>
             <version>1.0.29</version>
         </dependency>
-    <!-- servlet -->   
+    <!-- javax -->   
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>
@@ -149,6 +149,20 @@
             <artifactId>jstl</artifactId>
             <version>1.2</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/javax.validation/validation-api -->
+		<dependency>
+		    <groupId>javax.validation</groupId>
+		    <artifactId>validation-api</artifactId>
+		    <version>1.1.0.Final</version>  
+		</dependency>
+		<!-- 用于实现valid -->
+		<dependency>
+		    <groupId>org.hibernate</groupId>
+		    <artifactId>hibernate-validator</artifactId>
+		    <version>5.1.1.Final</version>
+		</dependency>
+
+        
     <!-- test -->   
         <dependency>
             <groupId>org.testng</groupId>

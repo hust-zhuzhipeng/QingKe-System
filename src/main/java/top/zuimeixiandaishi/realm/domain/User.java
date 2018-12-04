@@ -1,11 +1,25 @@
 package top.zuimeixiandaishi.realm.domain;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+/**
+ * 用户模型
+ * @author zzp
+ *
+ */
 public class User {
-	private Integer id;
-	private String username;
-	private String password;
-	private Role roleId;
-	private String email;
+	private Integer id;		//用户id
+	@NotNull(message="username can't be null!")
+	@Size(min=2,max=16,message="username can only be in [2,16]!")
+	private String username;//用户名
+	@NotNull
+	@Size(min=5,max=25)
+	private String password;//密码
+	private Role roleId;	//该用户的角色
+	private String email;	//邮箱
+	private String phone;	//手机
+	private State state;	//用户当前状态
+	
 	public Role getRoleId() {
 		return roleId;
 	}
@@ -37,9 +51,22 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	public State getState() {
+		return state;
+	}
+	public void setState(State state) {
+		this.state = state;
+	}
+	
 	@Override
 	public String toString(){
 		return "id="+id+"\tusername="+username+"\tpassword="+password;
 	}
-	
 }
