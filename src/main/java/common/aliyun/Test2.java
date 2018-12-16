@@ -29,7 +29,7 @@ import oss.core.token.domain.Token;
 import oss.persistent.HzPersistentPolicy2;
 import oss.persistent.PersistentPolicy;
 import oss.service.TokenServiceImpl;
-import top.zuimeixiandaishi.realm.domain.User;
+import realm.domain.User;
 import util.JsonOperate;
 
 public class Test2 {

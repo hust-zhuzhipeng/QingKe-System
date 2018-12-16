@@ -1,4 +1,4 @@
-package top.zuimeixiandaishi.realm.web;
+package realm.web;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import top.zuimeixiandaishi.realm.domain.Role;
-import top.zuimeixiandaishi.realm.domain.State;
-import top.zuimeixiandaishi.realm.domain.User;
-import top.zuimeixiandaishi.realm.service.UserService;
+import realm.domain.Role;
+import realm.domain.State;
+import realm.domain.User;
+import realm.service.UserService;
 /**
  * 用户注册服务
  * @author zzp
@@ -33,7 +33,6 @@ public class RegisterController {
 	 */
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public @ResponseBody String creatUser(@Valid User user,Errors errors){
-		System.out.println(user.getUsername().length());
 		if(errors.hasErrors()){
 			return "parameters is unvalid!";
 		}

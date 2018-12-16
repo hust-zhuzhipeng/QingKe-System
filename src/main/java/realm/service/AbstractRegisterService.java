@@ -1,10 +1,10 @@
-package top.zuimeixiandaishi.realm.service;
+package realm.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import top.zuimeixiandaishi.realm.domain.User;
+import realm.domain.User;
 import util.ECache;
 import util.MD5Util;
 

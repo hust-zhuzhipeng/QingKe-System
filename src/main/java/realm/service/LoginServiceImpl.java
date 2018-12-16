@@ -1,4 +1,4 @@
-package top.zuimeixiandaishi.realm.service;
+package realm.service;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;

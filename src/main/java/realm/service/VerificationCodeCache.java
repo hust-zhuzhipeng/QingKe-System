@@ -1,4 +1,4 @@
-package top.zuimeixiandaishi.realm.service;
+package realm.service;
 import javax.annotation.PostConstruct;
 
 import org.slf4j.Logger;
@@ -10,7 +10,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
 
-import top.zuimeixiandaishi.realm.domain.User;
+import realm.domain.User;
 import util.ECache;
 /**
  * 验证码的缓存

@@ -10,7 +10,7 @@
    http://www.springframework.org/schema/tx
     http://www.springframework.org/schema/tx/spring-tx.xsd">
     <!-- 自定义realm -->
-    <bean id="myRealm" class="top.zuimeixiandaishi.realm.MyRealm"/>
+    <bean id="myRealm" class="realm.MyRealm"/>
     <!-- 安全管理器 -->
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
     	<property name="realm" ref="myRealm"/>
@@ -97,7 +97,7 @@
     <bean id="sessionValidationScheduler"
         class="org.apache.shiro.session.mgt.quartz.QuartzSessionValidationScheduler">
         <!-- 设置session的失效扫描间隔，单位为毫秒 -->
-        <property name="sessionValidationInterval" value="100000"/>
+        <property name="sessionValidationInterval" value="900000"/>
         <!-- 随后还需要定义有一个会话管理器的程序类的引用 -->
         <property name="sessionManager" ref="sessionManager"/>
     </bean> 

@@ -1,4 +1,4 @@
-package top.zuimeixiandaishi.realm.domain;
+package realm.domain;
 /**
  * 当前用户状态
  * @author zzp

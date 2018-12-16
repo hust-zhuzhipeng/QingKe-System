@@ -1,4 +1,4 @@
-package top.zuimeixiandaishi.realm.domain;
+package realm.domain;
 /*
  * 角色枚举
  */

@@ -1,12 +1,12 @@
-package top.zuimeixiandaishi.realm.service;
+package realm.service;
 
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import top.zuimeixiandaishi.realm.dao.UserDao;
-import top.zuimeixiandaishi.realm.domain.User;
+import realm.dao.UserDao;
+import realm.domain.User;
 @Service("userService")
 public class UserServiceImpl implements UserService{
 	@Autowired

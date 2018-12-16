@@ -1,4 +1,4 @@
-package top.zuimeixiandaishi.realm.service;
+package realm.service;
 
 public enum RegisterExceptionEnum{
 	UNKOWN_ERROR(-1, "未知错误,注册失败"),

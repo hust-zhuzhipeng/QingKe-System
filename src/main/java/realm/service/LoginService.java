@@ -1,4 +1,4 @@
-package top.zuimeixiandaishi.realm.service;
+package realm.service;
 /*
  * 登录服务，提供登录的验证
  */

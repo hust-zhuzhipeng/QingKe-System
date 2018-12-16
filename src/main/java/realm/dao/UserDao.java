@@ -1,9 +1,9 @@
-package top.zuimeixiandaishi.realm.dao;
+package realm.dao;
 
 import java.util.Set;
 
-import top.zuimeixiandaishi.realm.domain.Role;
-import top.zuimeixiandaishi.realm.domain.User;
+import realm.domain.Role;
+import realm.domain.User;
 
 public interface UserDao {
 	/**

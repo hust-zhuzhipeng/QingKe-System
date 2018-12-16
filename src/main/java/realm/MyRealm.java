@@ -1,4 +1,4 @@
-package top.zuimeixiandaishi.realm;
+package realm;
 
 import java.util.Set;
 
@@ -12,8 +12,8 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import top.zuimeixiandaishi.realm.domain.User;
-import top.zuimeixiandaishi.realm.service.UserService;
+import realm.domain.User;
+import realm.service.UserService;
 
 public class MyRealm extends AuthorizingRealm{
 	@Autowired

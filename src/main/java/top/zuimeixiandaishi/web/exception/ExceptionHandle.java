@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import oss.core.exception.ResultEnum;
 import oss.core.token.TokenNotFoundException;
 import oss.core.token.domain.Token;
-import top.zuimeixiandaishi.realm.domain.User;
+import realm.domain.User;
 
 /**
  * 统一的异常处理

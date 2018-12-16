@@ -1,6 +1,6 @@
-package top.zuimeixiandaishi.realm.service;
+package realm.service;
 
-import top.zuimeixiandaishi.realm.domain.User;
+import realm.domain.User;
 
 /**
  * 注册服务，提供用户注册服务

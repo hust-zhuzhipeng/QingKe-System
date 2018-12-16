@@ -1,4 +1,4 @@
-package top.zuimeixiandaishi.realm.web;
+package realm.web;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -19,11 +19,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.sun.xml.bind.v2.TODO;
 
 import oss.core.operate.OSSOperationObjectImpl;
-import top.zuimeixiandaishi.realm.domain.Role;
-import top.zuimeixiandaishi.realm.domain.User;
-import top.zuimeixiandaishi.realm.service.LoginService;
-import top.zuimeixiandaishi.realm.service.RegisterService;
-import top.zuimeixiandaishi.realm.service.UserService;
+import realm.domain.Role;
+import realm.domain.User;
+import realm.service.LoginService;
+import realm.service.RegisterService;
+import realm.service.UserService;
 import util.MailUtil;
 
 @Repository
