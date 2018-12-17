@@ -3,3 +3,4 @@ encoding/.gitignore=UTF-8
 encoding//src/main/resources/aliyun.properties=UTF-8
 encoding//src/main/resources/log4j.properties=UTF-8
 encoding//src/main/resources/mail.properties=UTF-8
+encoding//src/main/resources/rpc.properties=UTF-8

@@ -4,6 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.SocketChannel;
@@ -16,14 +19,10 @@ public class RpcClientInitializer extends ChannelInitializer<SocketChannel>{
     public static RpcClientHandler h = new RpcClientHandler();
 	@Override
     protected void initChannel(SocketChannel socketChannel) throws Exception {
-		Map<String,Class> attachMap = new HashMap<>();
-		attachMap.put("attach", Object.class);
-		Map<Byte,Class> bodyMap = new HashMap<>();
-		bodyMap.put((byte)0, String.class);
         ChannelPipeline cp = socketChannel.pipeline();
         cp.addLast(new RpcEncoder());
         cp.addLast(new LengthFieldBasedFrameDecoder(65536, 4, 4, 0, 0));
-        cp.addLast(new RpcDecoder(attachMap,bodyMap));
+        cp.addLast(new RpcDecoder());
         cp.addLast(h);
     }
 }

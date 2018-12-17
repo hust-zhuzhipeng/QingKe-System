@@ -13,11 +13,8 @@ import io.netty.handler.codec.ByteToMessageDecoder;
  * 将byteBuf转换为NettyMessage
  */
 public class RpcDecoder extends ByteToMessageDecoder{
-	Map<String, Class> attachMap;	
-	Map<Byte, Class> bodyMap;
-	public RpcDecoder(Map<String, Class> attachMap,Map<Byte, Class>bodyMap){
-		this.attachMap = attachMap;
-		this.bodyMap = bodyMap;
+	
+	public RpcDecoder(){
 	}
 
 	@Override
@@ -53,7 +50,8 @@ public class RpcDecoder extends ByteToMessageDecoder{
                 valuesize = frame.readInt();
                 valueArray = new byte[valuesize];
                 frame.readBytes(valueArray);
-                attch.put(key, SerializationUtil.deserialize(valueArray, attachMap.get(key)));
+                attch.put(key, SerializationUtil.deserialize(valueArray, 
+                		MessageUtil.getAttachClass(key)));
         	}
         }
         //body
@@ -61,7 +59,8 @@ public class RpcDecoder extends ByteToMessageDecoder{
         if(bodysize >0){
         	byte[] bodyArray = new byte[bodysize];
         	frame.readBytes(bodyArray);
-            	Object o = SerializationUtil.deserialize(bodyArray, bodyMap.get(header.getType()));
+            	Object o = SerializationUtil.deserialize(bodyArray, 
+            			MessageUtil.getbodyClass(header.getType()));
             	msg.setBody(o);           
         }
         msg.setHeader(header);

@@ -82,9 +82,11 @@ public class NettyMessage {
 			str1 += header.toString();
 		}
 		if(body != null){
+			str2 += "body [";
 			str2 += body.toString();
+			str2 += "]";
 		}
 		
-		return str1+str2;
+		return str1+" "+str2;
 	}
 }
