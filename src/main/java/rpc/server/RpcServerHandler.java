@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import rpc.protocol.NettyMessage;
@@ -22,8 +23,9 @@ public class RpcServerHandler extends SimpleChannelInboundHandler<NettyMessage> 
 	@Override
 	protected void channelRead0(ChannelHandlerContext ctx, NettyMessage msg) throws Exception {
 		logger.info("RpcServerHandler accept msg:"+msg);
+		Channel channel = ctx.channel();
 		//交由业务处理类单独处理并反馈
-		rpcMessageHandler.submit(msg);
+		rpcMessageHandler.submit(msg,channel);
 	}
 	@Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {

@@ -22,6 +22,7 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
 import rpc.client.RpcClientInitializer;
+import rpc.protocol.NettyMessage;
 import rpc.protocol.RpcDecoder;
 import rpc.protocol.RpcEncoder;
 /**
@@ -93,5 +94,7 @@ public class RpcServer {
         }
         logger.info("RpcServer stop success");        
     }
-    
+    public void send(NettyMessage msg){
+    	
+    }
 }

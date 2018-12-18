@@ -25,6 +25,10 @@ public class NettyMessage {
 	private MsgHeader header;
 	private Object body;
 	
+	//仅内部解码可用
+	NettyMessage(){
+		header = new MsgHeader();
+	}
 	public MsgHeader getHeader() {
 		return header;
 	}
@@ -55,10 +59,16 @@ public class NettyMessage {
 	public void setSessionID(long sessionID) {
 		this.header.sessionID = sessionID;
 	}
-	public byte getType() {
-		return header.type;
+	public MessageType getType() {
+		return header.getType();
 	}
-	public void setType(byte type) {
+	byte getTypeToByte() {
+		return MessageType.TypeToByte(header.getType());
+	}
+	void setType(byte type) {
+		this.header.type = MessageType.getType(type);
+	}
+	public void setType(MessageType type) {
 		this.header.type = type;
 	}
 	public byte getPriority() {

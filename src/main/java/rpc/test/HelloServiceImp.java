@@ -10,4 +10,9 @@ public class HelloServiceImp implements HelloService{
 		return "Hello, i am HelloServiceImp";
 	}
 
+	@Override
+	public String echo(String str) {
+		return "echo "+str;
+	}
+
 }

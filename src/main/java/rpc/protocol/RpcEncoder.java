@@ -24,7 +24,7 @@ public class RpcEncoder extends MessageToByteEncoder <NettyMessage> {
 		sendBuf.writeInt(msg.getCrcCode());
 		sendBuf.writeInt(msg.getLength());
 		sendBuf.writeLong(msg.getSessionID());
-		sendBuf.writeByte(msg.getType());
+		sendBuf.writeByte(msg.getTypeToByte());
 		sendBuf.writeByte(msg.getPriority());
 		
 		//附加头信息

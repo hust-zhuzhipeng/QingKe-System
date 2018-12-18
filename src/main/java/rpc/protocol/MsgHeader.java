@@ -10,7 +10,7 @@ public class MsgHeader {
 
     long sessionID;// 会话ID
 
-    byte type;// 消息类型
+    MessageType type;// 消息类型
 
     byte priority;// 消息优先级
 
@@ -61,17 +61,21 @@ public class MsgHeader {
     /**
      * @return the type
      */
-    public final byte getType() {
+    public final MessageType getType() {
         return type;
     }
-
+    final byte getTypeToByte() {
+        return MessageType.TypeToByte(type);
+    }
     /**
      * @param type the type to set
      */
-    public final void setType(byte type) {
+    public final void setType(MessageType type) {
         this.type = type;
     }
-
+    void setType(byte type) {
+        this.type = MessageType.getType(type);
+    }
     /**
      * @return the priority
      */

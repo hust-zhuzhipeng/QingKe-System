@@ -5,7 +5,7 @@ package rpc.protocol;
  * @author huangyong
  */
 public class RpcResponse {
-    private String requestId;
+    private long requestId;
     private String error;
     private Object result;
 
@@ -13,11 +13,11 @@ public class RpcResponse {
         return error != null;
     }
 
-    public String getRequestId() {
+    public long getRequestId() {
         return requestId;
     }
 
-    public void setRequestId(String requestId) {
+    public void setRequestId(long requestId) {
         this.requestId = requestId;
     }
 
