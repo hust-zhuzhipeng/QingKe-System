@@ -2,6 +2,9 @@ package rpc.client;
 
 import java.net.SocketAddress;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
@@ -9,6 +12,7 @@ import rpc.protocol.MsgHeader;
 import rpc.protocol.NettyMessage;
 
 public class RpcClientHandler extends SimpleChannelInboundHandler<NettyMessage>{
+	private static final Logger logger = LoggerFactory.getLogger(RpcClientHandler.class); 
 	private volatile Channel channel;
     private SocketAddress remotePeer;
     

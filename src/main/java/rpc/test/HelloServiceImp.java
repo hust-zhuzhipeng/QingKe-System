@@ -2,7 +2,7 @@ package rpc.test;
 
 import rpc.server.RpcService;
 
-@RpcService(HelloService.class)
+@RpcService(value=HelloService.class)
 public class HelloServiceImp implements HelloService{
 
 	@Override

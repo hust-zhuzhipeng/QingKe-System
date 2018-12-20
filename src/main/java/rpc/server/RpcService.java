@@ -7,7 +7,7 @@ import java.lang.annotation.Target;
 
 import org.springframework.stereotype.Component;
 /**
- * 需要rpc远程调用的类的接口 
+ * 接受rpc远程调用的类的注解
  * @author zzp
  *
  */
@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 @Retention(RetentionPolicy.RUNTIME)	//注解的生命周期 在运行时仍存在
 @Component	//spring的组件注解 使得可以被spring发现
 public @interface RpcService {
-	 Class<?> value();
+	 Class<?> value();	//该类需要提供接口，实际提供服务的为该接口
 }
 /*
  *  public enum ElementType {

@@ -99,16 +99,6 @@ public class RpcMessageHandler implements ApplicationContextAware{
         String methodName = request.getMethodName();
         Class<?>[] parameterTypes = request.getParameterTypes();
         Object[] parameters = request.getParameters();
-
-        logger.info(serviceClass.getName());
-        logger.info(methodName);
-        for (int i = 0; i < parameterTypes.length; ++i) {
-            logger.info(parameterTypes[i].getName());
-        }
-        for (int i = 0; i < parameters.length; ++i) {
-            logger.info(parameters[i].toString());
-        }
-
         // JDK reflect
         /*Method method = serviceClass.getMethod(methodName, parameterTypes);
         method.setAccessible(true);

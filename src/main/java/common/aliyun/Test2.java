@@ -30,9 +30,11 @@ import oss.persistent.HzPersistentPolicy2;
 import oss.persistent.PersistentPolicy;
 import oss.service.TokenServiceImpl;
 import realm.domain.User;
+import rpc.test.HelloService;
 import util.JsonOperate;
 
 public class Test2 {
+	HelloService helloService;
 	public static void main(String[]args) throws Exception{
 		String b = "zuimeixiandaishi";
 		ApplicationContext ap = 

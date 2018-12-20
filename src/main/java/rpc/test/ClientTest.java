@@ -1,5 +1,10 @@
 package rpc.test;
 
+import java.util.concurrent.CountDownLatch;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 import rpc.client.RpcClient;
 import rpc.client.RpcClientInitializer;
 import rpc.protocol.MessageType;
@@ -9,29 +14,28 @@ import rpc.protocol.NettyMessageFactory;
 import rpc.protocol.RpcRequest;
 
 public class ClientTest {
+	static ApplicationContext a;
 	public static void main(String[]args) throws InterruptedException{
-		RpcClient c = new RpcClient("127.0.0.1",5917);
-		c.start();
-		NettyMessageFactory factory = new NettyMessageFactory((byte)1);
-		NettyMessage msg = factory.newRpcRequest();
-		
-		
-		//msg.setBody("你好！ server！");
-		RpcRequest r = (RpcRequest)msg.getBody();
-		r.setClassName("rpc.test.HelloService");
-		r.setMethodName("hello");
-		r.setParameterTypes(new Class<?>[0]);
-		r.setParameters(new Object[0]);
-		msg.setBody(r);
-		//RpcClientInitializer.h.sendMsg(msg);
-		Thread.sleep(2000);
-		System.out.println("send");
-		c.rpcClientHandler.sendMsg(msg);
-		Thread.sleep(2000);
-		r.setClassName("rpc.test.HelloService");
-		r.setMethodName("echo");
-		r.setParameterTypes(new Class<?>[]{String.class});
-		r.setParameters(new Object[]{"client"});
-		c.rpcClientHandler.sendMsg(msg);
+		CountDownLatch c = new CountDownLatch(1);
+		startAp(c);
+		c.await();
+		HelloService proxy = (HelloService) a.getBean("helloService");
+		System.out.println(proxy.hello());
+	}
+	public static void startAp(CountDownLatch c){
+		new Thread(new Runnable(){
+
+			@Override
+			public void run() {
+				ApplicationContext ap = 
+						new ClassPathXmlApplicationContext(
+								new String[]{"classpath:/spring/spring-rpc-client.xml"
+										});
+				a = ap;
+				System.out.println("ApplicationContext start success!");
+				c.countDown();
+			}
+			
+		}).start();;
 	}
 }

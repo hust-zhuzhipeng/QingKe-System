@@ -23,6 +23,7 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
 import rpc.client.RpcClientInitializer;
 import rpc.protocol.NettyMessage;
+import rpc.protocol.NettyMessageFactory;
 import rpc.protocol.RpcDecoder;
 import rpc.protocol.RpcEncoder;
 /**
@@ -33,6 +34,7 @@ import rpc.protocol.RpcEncoder;
 @Component("rpcServer")
 public class RpcServer {
 	private static final Logger logger = LoggerFactory.getLogger(RpcServer.class);
+	
 	private final String serverAddress;
 	private EventLoopGroup bossGroup = null;
     private EventLoopGroup workerGroup  = null;
@@ -81,7 +83,7 @@ public class RpcServer {
                 serviceRegistry.register(serverAddress);
             }*/
 
-            future.channel().closeFuture().sync();
+            //future.channel().closeFuture().sync();
         }
     }
 	//关闭服务器

@@ -20,7 +20,8 @@
     <context:property-placeholder location="classpath:rpc.properties" ignore-unresolvable="true"/>
     <!-- 扫描service包下所有使用注解的类型 -->
 	<context:component-scan base-package="rpc.protocol" />
-	<context:component-scan base-package="rpc.server" />
+	<context:component-scan base-package="rpc.client" />
+	<context:component-scan base-package="rpc.proxy" />
 	<context:component-scan base-package="rpc.test" />
 	<!-- 处理Netty传来的业务 -->
     <bean id="executor" class="java.util.concurrent.Executors" factory-method="newCachedThreadPool"/>
