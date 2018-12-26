@@ -28,15 +28,16 @@ import rpc.protocol.RpcResponse;
  * 继承aware接口 获取@RpcService注解的类
  */
 @Component("rpcMessageHandler")
-public class RpcMessageHandler implements ApplicationContextAware{
+public class RpcMessageHandler{
 	private static final Logger logger = LoggerFactory.getLogger(RpcMessageHandler.class);
 	@Autowired
     private ExecutorService executor;
 	@Autowired
 	private NettyMessageFactory nettyMessageFactory;
-	//接口名-实例
-	private Map<String, Object> handlerMap = new HashMap<>();
-	
+	/*//接口名-实例
+	private Map<String, Object> handlerMap = new HashMap<>();*/
+	@Autowired
+	private ServiceFind serviceFind;
 	//处理业务
     public void submit(NettyMessage msg,Channel channel) {
         executor.submit(new Runnable(){
@@ -62,24 +63,11 @@ public class RpcMessageHandler implements ApplicationContextAware{
     	}
     	
     }
-    //获取 @RpcService 修饰的服务接口，放入handlerMap中
-	@Override
-	public void setApplicationContext(ApplicationContext ctx) throws BeansException {
-		logger.info("setApplicationContext");
-    	Map<String, Object> serviceBeanMap = ctx.getBeansWithAnnotation(RpcService.class);
-        if (MapUtils.isNotEmpty(serviceBeanMap)) {
-            for (Object serviceBean : serviceBeanMap.values()) {
-                String interfaceName = serviceBean.getClass().getAnnotation(RpcService.class).value().getName();
-                logger.info("Loading service: interface= "+interfaceName+" real-class="+serviceBean.getClass());
-                handlerMap.put(interfaceName, serviceBean);
-            }
-        }
-	}
 	//手动加入服务
 	public void addServier(String interfaceName, Object serviceBean){
-		if (!handlerMap.containsKey(interfaceName)) {
+		if (!serviceFind.containService(interfaceName)) {
             logger.info("Loading service: {}", interfaceName);
-            handlerMap.put(interfaceName, serviceBean);
+            serviceFind.addService(interfaceName, serviceBean);
         }
 	}
 	private void doRequest(NettyMessage msg,Channel channel){
@@ -88,10 +76,9 @@ public class RpcMessageHandler implements ApplicationContextAware{
 	    RpcResponse response = (RpcResponse)responseMsg.getBody();
 		logger.info("doRequest");
 		//服务名
-        String className = request.getClassName();
-        logger.info(className);
+        String interfaceName = request.getClassName();
         //服务实例
-        Object serviceBean = handlerMap.get(className);
+        Object serviceBean = serviceFind.getServiceBean(interfaceName);
         logger.info(serviceBean.toString());
         //服务类型
         Class<?> serviceClass = serviceBean.getClass();
@@ -122,4 +109,6 @@ public class RpcMessageHandler implements ApplicationContextAware{
 		//TODO
 		return null;
 	}
+	
+	
 }

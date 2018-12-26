@@ -26,6 +26,7 @@ import rpc.protocol.NettyMessage;
 import rpc.protocol.NettyMessageFactory;
 import rpc.protocol.RpcDecoder;
 import rpc.protocol.RpcEncoder;
+import rpc.registry.ServiceRegistry;
 /**
  * rpc服务器
  * @author zzp
@@ -40,7 +41,10 @@ public class RpcServer {
     private EventLoopGroup workerGroup  = null;
     @Autowired
     private RpcServerHandler rpcServerHandler;
-   
+    @Autowired
+    private ServiceRegistry serviceRegistry;
+    @Autowired
+	private ServiceFind serviceFind;
     @Autowired
     public RpcServer(@Value("${RpcServer.Address}")String serverAddress){
     	this.serverAddress = serverAddress;
@@ -78,10 +82,10 @@ public class RpcServer {
             logger.info("host="+host+"\tport="+port);
             ChannelFuture future = bootstrap.bind(host, port).sync();
             logger.info("Server started on port {}", port);
-
-            /*if (serviceRegistry != null) {
-                serviceRegistry.register(serverAddress);
-            }*/
+            
+            if (serviceRegistry != null) {
+                serviceRegistry.register(serviceFind.getServiceName(),serverAddress);
+            }
 
             //future.channel().closeFuture().sync();
         }
